@@ -36,19 +36,41 @@ int main(int argc, const char * argv[]) {
   
     
     // todo list
-    // 2. Dynamically changing the value.    
+    // 2. Dynamically changing the value.
     
-    FILE * fp;
-    char array[256][256];
-    if((fp = fopen("LONDON256.RAW", "rb")) == NULL) {
-        printf( "File  could not be opened\n" );
+    
+    
+    FILE * imageFile;
+    
+    int height = 256;
+    int width  = 256;
+    
+    int *pImageSobelX,*pImageSobelY;
+    
+    unsigned char inputImage[256][256];
+    
+    int MaskSobelX[3][3] = { {-1,0,1},
+                             {-2,0,2},
+                             {-1,0,1}
+                           };
+    
+    int MaskSobelY[3][3] = { {-1,0,1},
+                             {-2,0,2},
+                             {-1,0,1}
+                           };
+
+    
+    if((imageFile = fopen("LONDON256.RAW", "rb")) == NULL) {
+        printf( "File could not be opened\n" );
     } else {
-        fread(array, 1, 65536, fp);
+        fread(inputImage, sizeof(char),256 * 256, imageFile);
     }
     
-   
+    fclose(imageFile);
     
-    fclose(fp);
+    pImageSobelX = new int[height*width];
+    pImageSobelY = new int[height*width];
+    
     
     
     return 0;
