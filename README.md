@@ -1,11 +1,8 @@
 # EdgeDetector.
 
-This is a Simple EdgeDetector to use normal raw file. 
+This is a Simple EdgeDetector to use normal grey image raw file. 
 
- In order to learn Basic Multimedia image Processing  and to learn c/c++.
-
-
-
+I'm working on this project  , In order to learn Basic Multimedia knowledges  and to learn c/c++.
 
 
 
