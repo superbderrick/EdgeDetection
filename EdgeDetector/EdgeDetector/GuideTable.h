@@ -15,9 +15,6 @@
 #include "GuideTableConfig.h"
 #include <iostream>
 
-
-#endif /* defined(__EdgeDetector__GuideTable__) */
-
 class GuideTable{
     
 public:
@@ -34,3 +31,6 @@ private:
     void initStringTable();
     void init();
 };
+
+#endif /* defined(__EdgeDetector__GuideTable__) */
+

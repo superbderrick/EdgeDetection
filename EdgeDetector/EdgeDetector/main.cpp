@@ -12,6 +12,7 @@
 #include "main.h"
 #include "ProjectConfig.h"
 #include "GuideTable.h"
+#include "ImageReader.h"
 
 
 char fileName[20];
@@ -32,20 +33,14 @@ int main(int argc, const char * argv[]) {
         showSuccessGuide();
         strcpy(fileName,argv[FILE_NAME]);
         guideTable->inputedValues(fileName, atoi(argv[WIDTH]), atoi(argv[HEIGHT]), atoi(argv[EDGE_MODE]));
-        
     }
     
     guideTable->showGuideMessage(START_PROGRAM);
     
+    ImageReader * imageReader = new ImageReader(fileName, atoi(argv[WIDTH]), atoi(argv[HEIGHT]));
     
-    FILE * imageFile;
+    imageReader->start();
     
-    int height = 256;
-    int width  = 256;
-    
-    int *pImageSobelX,*pImageSobelY;
-    
-    unsigned char inputImage[256][256];
     
   
 
