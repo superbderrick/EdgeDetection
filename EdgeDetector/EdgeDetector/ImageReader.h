@@ -23,8 +23,9 @@ private:
     char * mFileName;
     int mWidth;
     int mHeight;
-
-        
+    
+    unsigned char ** inputImage;
+    unsigned int ** arr;
     
 public:
     ImageReader();

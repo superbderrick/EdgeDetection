@@ -20,10 +20,9 @@ GuideTable * guideTable;
 
 int main(int argc, const char * argv[]) {
     guideTable = new GuideTable;
- 
+
+    //printf("%d \n" , argc); debug
     if( argc < INPUT_NUM ) {
-        printf("%s \n" , argv[FILE_NAME]);
-        
         if(argc == FILE_NAME+1 && strcmp(argv[FILE_NAME], "help") == 0 ) {
           guideTable->showGuideMessage(TEST);
         } else {
@@ -39,30 +38,8 @@ int main(int argc, const char * argv[]) {
     
     ImageReader * imageReader = new ImageReader(fileName, atoi(argv[WIDTH]), atoi(argv[HEIGHT]));
     
+   
     imageReader->start();
-    
-    
-  
-
-//    
-//    if((imageFile = fopen("LONDON256.RAW", "rb")) == NULL) {
-//        printf( "File could not be opened\n" );
-//    } else {
-//        fread(inputImage, sizeof(char),256 * 256, imageFile);
-//    }
-//    
-//    fclose(imageFile);
-//    
-//    int value = 0;
-//    for(int i = 0 ; i < height ; i++)
-//    {
-//        for (int j = 0 ; j< width; j++) {
-//        value =   inputImage[i][j];
-//        }
-//    }
-//    
-//    
-//
     
     
     guideTable->showGuideMessage(DECK);
@@ -81,6 +58,8 @@ void showGuide() {
     guideTable->showGuideMessage(INPUT_LIST);
     guideTable->showGuideMessage(HELP_DETAIL);
     guideTable->showGuideMessage(HELP_DETAIL_command);
+    
+    exit(1);
 };
 
 void showHelp() {

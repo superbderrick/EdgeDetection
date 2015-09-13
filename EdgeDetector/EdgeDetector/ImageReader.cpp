@@ -19,8 +19,16 @@ ImageReader::ImageReader(char * fileName , unsigned int width , unsigned int hei
     mFileName = new char();
     
     strcpy(mFileName , fileName);
+    
     mWidth = width;
     mHeight = height;
+    
+    
+    
+    
+    
+  // todo list change to danamic array
+ 
 };
 
 
@@ -33,10 +41,7 @@ ImageReader::~ImageReader()
 
 void ImageReader::start()
 {
-    int width = mWidth;
-    int height = mHeight;
-    
-    unsigned char inputImage[width][height] ;
+    unsigned char testArray  [256][256];
     
     FILE *infile= fopen(mFileName,"rb");
     
@@ -44,12 +49,9 @@ void ImageReader::start()
         guideTable->showGuideMessage(FILE_OPEN_ERROR);
     }
     
-    
-    fread(inputImage, sizeof(char),mWidth*mHeight,infile);
+
+    fread(testArray, sizeof(char),mWidth*mHeight,infile);
     fclose(infile);
-    
-    
-    
     
 };
 
