@@ -13,3 +13,9 @@
 #endif
 
 #define  INPUT_NUM 4
+#define  FILE_NAME 1
+#define  HELP_COMMAND "help"
+#define  WIDTH 2
+#define  HEIGHT 3
+#define  EDGE_MODE 4
+

@@ -25,6 +25,7 @@ public:
     GuideTable();
     ~GuideTable();
     void showGuideMessage(std::string);
+    void inputedValues(char * filename , int height , int width , int mode);
     
 private:
     

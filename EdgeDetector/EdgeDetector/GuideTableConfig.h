@@ -20,9 +20,26 @@
 
 #define INTRODUCTION_PROGRAM "THIS IS SIMPLE EDGE DECTOR."
 
-#define INPUT_LIST "Plese Input Raw file, Width, Height , Dector Mode. "
+#define INPUT_LIST "Plese Input  Raw file, Width, Height , Dector Mode. "
 
 #define DECK "------------------------------------------------------------------------"
 
 #define START_PROGRAM "Start Program."
-#define END_PROGRAM "End Program."
+#define END_PROGRAM   "End Program."
+
+
+#define INPUT_SUCCESS   "Input Success."
+#define INPUT_DATALIST   "Inputed Data List. "
+
+
+#define INPUT_ERROR "You have to input correctly ! "
+#define HELP_DETAIL "The detailed description of this program As follows "
+#define HELP_DETAIL_command " 'EdgeDetector --help' "
+
+
+
+#define TEST " TEST "
+
+
+
+

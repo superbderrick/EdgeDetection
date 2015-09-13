@@ -9,46 +9,33 @@
 
 
 #include <stdio.h>
+#include "main.h"
 #include "ProjectConfig.h"
 #include "GuideTable.h"
 
 
+char fileName[20];
+GuideTable * guideTable;
 
 int main(int argc, const char * argv[]) {
-    
-    // Create Guide Table
-    GuideTable * guideTable;
     guideTable = new GuideTable;
-    
-    guideTable->showGuideMessage(DECK);
-    guideTable->showGuideMessage(DECK);
-    
-    guideTable->showGuideMessage(START_PROGRAM);
-
-    
-    
-    
+ 
     if( argc < INPUT_NUM ) {
-        printf("You have to input correctly ! \n");
-        printf("File Name, width, height \n");
+        printf("%s \n" , argv[FILE_NAME]);
+        
+        if(argc == FILE_NAME+1 && strcmp(argv[FILE_NAME], "help") == 0 ) {
+          guideTable->showGuideMessage(TEST);
+        } else {
+            showGuide();
+        }
     } else {
-        printf("You have to input correctly ! \n");
-        printf("Input value is 3 \n");
-        printf("File Name, width, height \n");
+        showSuccessGuide();
+        strcpy(fileName,argv[FILE_NAME]);
+        guideTable->inputedValues(fileName, atoi(argv[WIDTH]), atoi(argv[HEIGHT]), atoi(argv[EDGE_MODE]));
+        
     }
     
-    
-////    char fileName[20];
-////    
-////    strcpy(fileName,argv[1]);
-////    
-//
-//  //  printf("file name :  %s /n",fileName);
-  
-    
-    // todo list
-    // 2. Dynamically changing the value.
-    
+    guideTable->showGuideMessage(START_PROGRAM);
     
     
     FILE * imageFile;
@@ -80,7 +67,37 @@ int main(int argc, const char * argv[]) {
 //    }
 //    
 //    
-//    
+//
+    
+    
+    guideTable->showGuideMessage(DECK);
+    guideTable->showGuideMessage(DECK);
     
     return 0;
 }
+
+void showDeck() {
+    guideTable->showGuideMessage(DECK);
+    guideTable->showGuideMessage(DECK);
+};
+
+void showGuide() {
+    guideTable->showGuideMessage(INPUT_ERROR);
+    guideTable->showGuideMessage(INPUT_LIST);
+    guideTable->showGuideMessage(HELP_DETAIL);
+    guideTable->showGuideMessage(HELP_DETAIL_command);
+};
+
+void showHelp() {
+   
+};
+
+void showSuccessGuide() {
+    guideTable->showGuideMessage(INPUT_SUCCESS);
+    guideTable->showGuideMessage(INPUT_DATALIST);
+};
+
+
+
+
+
