@@ -6,27 +6,38 @@
 //  Copyright (c) 2015 sensation. All rights reserved.
 //
 
-static const int INPUT_NUM=4;
+
 
 #include <stdio.h>
+#include "ProjectConfig.h"
+#include "GuideTable.h"
 
 
-void fileOpen();
+
 int main(int argc, const char * argv[]) {
-
-    // todo list
-    // 1. input value module
     
-//    if( argc != INPUT_NUM ) {
-//        printf("You have to input correctly ! \n");
-//        printf("Input value is 3 \n");
-//        printf("File Name, width, height \n");
-//        exit(1);
-//    } else {
-//        printf("You have to input correctly ! \n");
-//        printf("Input value is 3 \n");
-//        printf("File Name, width, height \n");
-//    }
+    // Create Guide Table
+    GuideTable * guideTable;
+    guideTable = new GuideTable;
+    
+    guideTable->showGuideMessage(DECK);
+    guideTable->showGuideMessage(DECK);
+    
+    guideTable->showGuideMessage(START_PROGRAM);
+
+    
+    
+    
+    if( argc < INPUT_NUM ) {
+        printf("You have to input correctly ! \n");
+        printf("File Name, width, height \n");
+    } else {
+        printf("You have to input correctly ! \n");
+        printf("Input value is 3 \n");
+        printf("File Name, width, height \n");
+    }
+    
+    
 ////    char fileName[20];
 ////    
 ////    strcpy(fileName,argv[1]);
@@ -49,29 +60,27 @@ int main(int argc, const char * argv[]) {
     
     unsigned char inputImage[256][256];
     
-    int MaskSobelX[3][3] = { {-1,0,1},
-                             {-2,0,2},
-                             {-1,0,1}
-                           };
-    
-    int MaskSobelY[3][3] = { {-1,0,1},
-                             {-2,0,2},
-                             {-1,0,1}
-                           };
+  
 
-    
-    if((imageFile = fopen("LONDON256.RAW", "rb")) == NULL) {
-        printf( "File could not be opened\n" );
-    } else {
-        fread(inputImage, sizeof(char),256 * 256, imageFile);
-    }
-    
-    fclose(imageFile);
-    
-    pImageSobelX = new int[height*width];
-    pImageSobelY = new int[height*width];
-    
-    
+//    
+//    if((imageFile = fopen("LONDON256.RAW", "rb")) == NULL) {
+//        printf( "File could not be opened\n" );
+//    } else {
+//        fread(inputImage, sizeof(char),256 * 256, imageFile);
+//    }
+//    
+//    fclose(imageFile);
+//    
+//    int value = 0;
+//    for(int i = 0 ; i < height ; i++)
+//    {
+//        for (int j = 0 ; j< width; j++) {
+//        value =   inputImage[i][j];
+//        }
+//    }
+//    
+//    
+//    
     
     return 0;
 }
