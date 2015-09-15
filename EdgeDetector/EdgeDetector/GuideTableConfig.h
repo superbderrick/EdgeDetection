@@ -36,16 +36,17 @@
 #define HELP_DETAIL "The detailed description of this program As follows "
 #define HELP_DETAIL_command " 'EdgeDetector --help' "
 
-#define FILE_OPEN_SUCCESS " File open Success ,  "
-#define FILE_OPEN_ERROR " File open Error , Plese check it file "
+#define FILE_OPEN_SUCCESS "File open Success ,  "
+#define FILE_OPEN_ERROR "File open Error , Plese check it file "
 #define FILE_WRITE_SUCCESS " File Write Success ,  "
 
 
 
-#define MEMORY_FAILURE " Memory , allocation failure "
-#define MEMORY_SUCCESS " Memory , allocation Success "
+#define MEMORY_FAILURE "Memory , allocation failure "
+#define MEMORY_SUCCESS "Memory , allocation Success "
 
-
+#define EDGEDETECTOR_START  "EdgeDetector START  "
+#define EDGEDETECTOR_FINISH "EdgeDetector FINISH  "
 
 #define TEST " TEST "
 

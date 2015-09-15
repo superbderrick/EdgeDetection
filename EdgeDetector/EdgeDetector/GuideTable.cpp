@@ -48,7 +48,8 @@ void GuideTable::initStringTable()
         guideMap.insert(std::pair<std::string, std::string>(FILE_OPEN_SUCCESS, FILE_OPEN_SUCCESS));
         guideMap.insert(std::pair<std::string, std::string>(FILE_OPEN_ERROR, FILE_OPEN_ERROR));
         guideMap.insert(std::pair<std::string, std::string>(FILE_WRITE_SUCCESS, FILE_WRITE_SUCCESS));
-        
+        guideMap.insert(std::pair<std::string, std::string>(EDGEDETECTOR_START, EDGEDETECTOR_START));
+        guideMap.insert(std::pair<std::string, std::string>(EDGEDETECTOR_FINISH, EDGEDETECTOR_FINISH));
         
         guideMap.insert(std::pair<std::string, std::string>(TEST, TEST));
         

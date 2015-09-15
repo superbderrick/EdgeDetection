@@ -21,12 +21,12 @@ GuideTable * guideTable;
 int main(int argc, const char * argv[]) {
     guideTable = new GuideTable;
     
+    guideTable->showGuideMessage(EDGEDETECTOR_START);
     showDeck();
 
-    //printf("%d \n" , argc); debug
     if( argc < INPUT_NUM ) {
-        if(argc == FILE_NAME+1 && strcmp(argv[FILE_NAME], "help") == 0 ) {
-          guideTable->showGuideMessage(TEST);
+        if( argc == FILE_NAME+1 && strcmp(argv[FILE_NAME], "help") == 0 ) {
+            guideTable->showGuideMessage(TEST);
         } else {
             showGuide();
         }
@@ -39,13 +39,14 @@ int main(int argc, const char * argv[]) {
     guideTable->showGuideMessage(START_PROGRAM);
     
     ImageReader * imageReader = new ImageReader(fileName, atoi(argv[WIDTH]), atoi(argv[HEIGHT]));
-    
    
     imageReader->start();
     
     
  
     showDeck();
+    guideTable->showGuideMessage(EDGEDETECTOR_FINISH);
+    
     return 0;
 }
 

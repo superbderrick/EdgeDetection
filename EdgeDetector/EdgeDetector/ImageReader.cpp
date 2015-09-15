@@ -54,16 +54,14 @@ unsigned char ** ImageReader::allocateImage(int width, int height)
     int i, j;
     unsigned char **ptr;
     
-    if ((ptr = (unsigned char**)malloc(height * sizeof(unsigned char*))) == NULL)
-    {
+    if ((ptr = (unsigned char**)malloc(height * sizeof(unsigned char*))) == NULL) {
         guideTable->showGuideMessage(MEMORY_FAILURE);
         exit(1);
     }
     
     for (i = 0; i<height; i++)
     {
-        if ((ptr[i] = (unsigned char*)malloc(width * sizeof(unsigned char))) == NULL)
-        {
+        if ((ptr[i] = (unsigned char*)malloc(width * sizeof(unsigned char))) == NULL) {
             guideTable->showGuideMessage(MEMORY_FAILURE);
             exit(1);
         }
@@ -83,8 +81,7 @@ void ImageReader::readfile(char *filename, unsigned char **source, int width, in
     int i, j;
     FILE *file;
     
-    if ((file = fopen(filename, "rb")) == NULL)
-    {
+    if ((file = fopen(filename, "rb")) == NULL) {
         guideTable->showGuideMessage(FILE_OPEN_ERROR);
         exit(1);
     }
@@ -102,8 +99,7 @@ void ImageReader:: Writefile(char *filename, unsigned char **result, int width, 
     int i, j;
     FILE *writef;
     int value = 0;
-    if ((writef = fopen(filename, "wb")) == NULL)
-    {
+    if ((writef = fopen(filename, "wb")) == NULL) {
         guideTable->showGuideMessage(FILE_OPEN_ERROR);
         exit(1);
     }
@@ -125,7 +121,7 @@ void ImageReader:: Writefile(char *filename, unsigned char **result, int width, 
     }
     
     
-     guideTable->showGuideMessage(FILE_WRITE_SUCCESS);
+    guideTable->showGuideMessage(FILE_WRITE_SUCCESS);
     fclose(writef);
 }
 
