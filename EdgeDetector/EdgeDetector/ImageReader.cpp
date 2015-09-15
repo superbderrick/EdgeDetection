@@ -46,6 +46,7 @@ void ImageReader::start()
     
     image = allocateImage(mWidth,mHeight);
     readfile(mFileName, image, mWidth, mHeight);
+    Writefile("result.raw", image, mWidth, mHeight);
 };
 
 unsigned char ** ImageReader::allocateImage(int width, int height)
@@ -95,6 +96,37 @@ void ImageReader::readfile(char *filename, unsigned char **source, int width, in
     guideTable->showGuideMessage(FILE_OPEN_SUCCESS);
     fclose(file);
     
+}
+void ImageReader:: Writefile(char *filename, unsigned char **result, int width, int height)
+{
+    int i, j;
+    FILE *writef;
+    int value = 0;
+    if ((writef = fopen(filename, "wb")) == NULL)
+    {
+        guideTable->showGuideMessage(FILE_OPEN_ERROR);
+        exit(1);
+    }
+    
+    for (i = 0; i<height; i++)
+    {
+        for (j = 0; j<width; j++)
+        {
+            if(result[i][j] > 128)
+            {
+                value = 128;
+            } else
+                value = 0;
+            
+            printf("%d \n" , value);
+            putc((unsigned char)value, writef);
+        }
+        
+    }
+    
+    
+     guideTable->showGuideMessage(FILE_WRITE_SUCCESS);
+    fclose(writef);
 }
 
 

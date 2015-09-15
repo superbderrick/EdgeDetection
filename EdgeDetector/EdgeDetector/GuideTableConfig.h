@@ -38,6 +38,10 @@
 
 #define FILE_OPEN_SUCCESS " File open Success ,  "
 #define FILE_OPEN_ERROR " File open Error , Plese check it file "
+#define FILE_WRITE_SUCCESS " File Write Success ,  "
+
+
+
 #define MEMORY_FAILURE " Memory , allocation failure "
 #define MEMORY_SUCCESS " Memory , allocation Success "
 

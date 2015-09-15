@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		49A0EB231B9E7761001C882B /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 49A0EB221B9E7761001C882B /* main.c */; };
+		4936C93E1BA57F790061EBCA /* GuideTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4936C93C1BA57F790061EBCA /* GuideTable.cpp */; };
+		4936C9431BA59B460061EBCA /* ImageReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4936C9411BA59B460061EBCA /* ImageReader.cpp */; };
+		493E07AB1BA85BB7002CDA67 /* tempTestCode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 493E07AA1BA85BB7002CDA67 /* tempTestCode.cpp */; };
+		49A0EB231B9E7761001C882B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49A0EB221B9E7761001C882B /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +26,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4936C93A1BA57DFE0061EBCA /* ProjectConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectConfig.h; sourceTree = "<group>"; };
+		4936C93C1BA57F790061EBCA /* GuideTable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GuideTable.cpp; sourceTree = "<group>"; };
+		4936C93D1BA57F790061EBCA /* GuideTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideTable.h; sourceTree = "<group>"; };
+		4936C93F1BA582B50061EBCA /* GuideTableConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GuideTableConfig.h; sourceTree = "<group>"; };
+		4936C9401BA597BB0061EBCA /* main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
+		4936C9411BA59B460061EBCA /* ImageReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageReader.cpp; sourceTree = "<group>"; };
+		4936C9421BA59B460061EBCA /* ImageReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageReader.h; sourceTree = "<group>"; };
+		493E07AA1BA85BB7002CDA67 /* tempTestCode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tempTestCode.cpp; sourceTree = "<group>"; };
 		49A0EB1F1B9E7761001C882B /* EdgeDetector */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EdgeDetector; sourceTree = BUILT_PRODUCTS_DIR; };
-		49A0EB221B9E7761001C882B /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		49A0EB221B9E7761001C882B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +68,15 @@
 		49A0EB211B9E7761001C882B /* EdgeDetector */ = {
 			isa = PBXGroup;
 			children = (
-				49A0EB221B9E7761001C882B /* main.c */,
+				49A0EB221B9E7761001C882B /* main.cpp */,
+				4936C93A1BA57DFE0061EBCA /* ProjectConfig.h */,
+				4936C93C1BA57F790061EBCA /* GuideTable.cpp */,
+				4936C93D1BA57F790061EBCA /* GuideTable.h */,
+				4936C93F1BA582B50061EBCA /* GuideTableConfig.h */,
+				4936C9401BA597BB0061EBCA /* main.h */,
+				4936C9411BA59B460061EBCA /* ImageReader.cpp */,
+				4936C9421BA59B460061EBCA /* ImageReader.h */,
+				493E07AA1BA85BB7002CDA67 /* tempTestCode.cpp */,
 			);
 			path = EdgeDetector;
 			sourceTree = "<group>";
@@ -118,7 +137,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49A0EB231B9E7761001C882B /* main.c in Sources */,
+				49A0EB231B9E7761001C882B /* main.cpp in Sources */,
+				4936C93E1BA57F790061EBCA /* GuideTable.cpp in Sources */,
+				493E07AB1BA85BB7002CDA67 /* tempTestCode.cpp in Sources */,
+				4936C9431BA59B460061EBCA /* ImageReader.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +254,7 @@
 				49A0EB281B9E7761001C882B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
