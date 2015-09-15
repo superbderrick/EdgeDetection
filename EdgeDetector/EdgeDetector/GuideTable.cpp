@@ -43,7 +43,14 @@ void GuideTable::initStringTable()
         guideMap.insert(std::pair<std::string, std::string>(INPUT_DATALIST, INPUT_DATALIST));
         guideMap.insert(std::pair<std::string, std::string>(HELP_DETAIL, HELP_DETAIL));
         guideMap.insert(std::pair<std::string, std::string>(HELP_DETAIL_command, HELP_DETAIL_command));
-        guideMap.insert(std::pair<std::string, std::string>(TEST, TEST));        
+        guideMap.insert(std::pair<std::string, std::string>(MEMORY_FAILURE, MEMORY_FAILURE));
+        guideMap.insert(std::pair<std::string, std::string>(MEMORY_SUCCESS, MEMORY_SUCCESS));
+        guideMap.insert(std::pair<std::string, std::string>(FILE_OPEN_SUCCESS, FILE_OPEN_SUCCESS));
+        guideMap.insert(std::pair<std::string, std::string>(FILE_OPEN_ERROR, FILE_OPEN_ERROR));
+        
+        guideMap.insert(std::pair<std::string, std::string>(TEST, TEST));
+        
+        
     }
     
     

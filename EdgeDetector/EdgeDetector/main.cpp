@@ -20,6 +20,8 @@ GuideTable * guideTable;
 
 int main(int argc, const char * argv[]) {
     guideTable = new GuideTable;
+    
+    showDeck();
 
     //printf("%d \n" , argc); debug
     if( argc < INPUT_NUM ) {
@@ -42,9 +44,8 @@ int main(int argc, const char * argv[]) {
     imageReader->start();
     
     
-    guideTable->showGuideMessage(DECK);
-    guideTable->showGuideMessage(DECK);
-    
+ 
+    showDeck();
     return 0;
 }
 

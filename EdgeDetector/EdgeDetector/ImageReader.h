@@ -21,17 +21,22 @@ class ImageReader
 private:
     GuideTable * guideTable;
     char * mFileName;
-    int mWidth;
-    int mHeight;
+    int  mWidth;
+    int  mHeight;
     
     unsigned char ** inputImage;
-    unsigned int ** arr;
+    unsigned int  ** arr;
     
 public:
     ImageReader();
     ImageReader(char * fileName , unsigned int width , unsigned int height );
     ~ImageReader();
     
+    unsigned char ** getImageData(unsigned char ** data);
+    
+    unsigned char ** allocateImage( int width,  int height);
+    
+    void readfile(char *filename, unsigned char **source, int width, int height);
     void start();
     
 };

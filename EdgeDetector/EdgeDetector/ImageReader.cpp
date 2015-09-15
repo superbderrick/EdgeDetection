@@ -16,19 +16,15 @@ ImageReader::ImageReader()
 ImageReader::ImageReader(char * fileName , unsigned int width , unsigned int height )
 {
     guideTable = new GuideTable();
-    mFileName = new char();
     
+    mFileName = new char();
+
     strcpy(mFileName , fileName);
     
     mWidth = width;
-    mHeight = height;
+    mHeight =  height;
     
     
-    
-    
-    
-  // todo list change to danamic array
- 
 };
 
 
@@ -38,20 +34,71 @@ ImageReader::~ImageReader()
     delete mFileName;
 };
 
+unsigned char**  ImageReader::getImageData(unsigned char ** data) {
+    
+    return NULL;
+}
+
 
 void ImageReader::start()
 {
-    unsigned char testArray  [256][256];
+    unsigned char **image;
     
-    FILE *infile= fopen(mFileName,"rb");
+    image = allocateImage(mWidth,mHeight);
+    readfile(mFileName, image, mWidth, mHeight);
+};
+
+unsigned char ** ImageReader::allocateImage(int width, int height)
+{
+    int i, j;
+    unsigned char **ptr;
     
-    if(infile == NULL) {
-        guideTable->showGuideMessage(FILE_OPEN_ERROR);
+    if ((ptr = (unsigned char**)malloc(height * sizeof(unsigned char*))) == NULL)
+    {
+        guideTable->showGuideMessage(MEMORY_FAILURE);
+        exit(1);
     }
     
-
-    fread(testArray, sizeof(char),mWidth*mHeight,infile);
-    fclose(infile);
+    for (i = 0; i<height; i++)
+    {
+        if ((ptr[i] = (unsigned char*)malloc(width * sizeof(unsigned char))) == NULL)
+        {
+            guideTable->showGuideMessage(MEMORY_FAILURE);
+            exit(1);
+        }
+    }
     
-};
+    for (i = 0; i<height; i++)
+        for (j = 0; j<width; j++)
+            ptr[i][j] = 0;
+    
+    guideTable->showGuideMessage(MEMORY_SUCCESS);
+    
+    return ptr;
+}
+
+void ImageReader::readfile(char *filename, unsigned char **source, int width, int height)
+{
+    int i, j;
+    FILE *file;
+    
+    if ((file = fopen(filename, "rb")) == NULL)
+    {
+        guideTable->showGuideMessage(FILE_OPEN_ERROR);
+        exit(1);
+    }
+    
+    for (i = 0; i<height; i++)
+        for (j = 0; j<width; j++)
+            source[i][j] = (unsigned char)getc(file);
+    
+    guideTable->showGuideMessage(FILE_OPEN_SUCCESS);
+    fclose(file);
+    
+}
+
+
+
+
+
 
