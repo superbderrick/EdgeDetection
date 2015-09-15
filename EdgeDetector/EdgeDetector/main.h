@@ -16,3 +16,4 @@ void showGuide();
 void showDeck();
 void showHelp();
 void showSuccessGuide();
+void DeleteLibs();

@@ -24,7 +24,7 @@ private:
     int  mWidth;
     int  mHeight;
     
-    unsigned char ** inputImage;
+
     unsigned int  ** arr;
     
 public:
@@ -32,6 +32,7 @@ public:
     ImageReader(char * fileName , unsigned int width , unsigned int height );
     ~ImageReader();
     
+    unsigned char ** inputImage;
     unsigned char ** getImageData(unsigned char ** data);
     
     unsigned char ** allocateImage( int width,  int height);

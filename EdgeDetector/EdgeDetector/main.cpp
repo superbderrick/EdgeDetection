@@ -13,6 +13,8 @@
 #include "ProjectConfig.h"
 #include "GuideTable.h"
 #include "ImageReader.h"
+#include "ImageWriter.h"
+#include "EdgeController.h"
 
 
 char fileName[20];
@@ -42,6 +44,13 @@ int main(int argc, const char * argv[]) {
    
     imageReader->start();
     
+   
+    
+//    EdgeController * Controller = new EdgeController(1 , imageReader->inputImage);
+//
+//    
+//    ImageWriter * imageWriter = new ImageWriter(Controller->applyAlgorithm());
+//    imageWriter->makeRawfile();
     
  
     showDeck();
@@ -72,6 +81,11 @@ void showSuccessGuide() {
     guideTable->showGuideMessage(INPUT_SUCCESS);
     guideTable->showGuideMessage(INPUT_DATALIST);
 };
+
+void deletelibs() {
+    
+};
+
 
 
 
