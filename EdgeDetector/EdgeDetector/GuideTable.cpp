@@ -31,8 +31,6 @@ void GuideTable::initStringTable()
     // Inputs guide strings
     if(guideMap.empty())
     {
-
-        
         guideMap.insert(std::pair<std::string, std::string>(INTRODUCTION_PROGRAM, INTRODUCTION_PROGRAM));
         guideMap.insert(std::pair<std::string, std::string>(INPUT_LIST, INPUT_LIST));
         guideMap.insert(std::pair<std::string, std::string>(DECK, DECK));
@@ -50,30 +48,21 @@ void GuideTable::initStringTable()
         guideMap.insert(std::pair<std::string, std::string>(FILE_WRITE_SUCCESS, FILE_WRITE_SUCCESS));
         guideMap.insert(std::pair<std::string, std::string>(EDGEDETECTOR_START, EDGEDETECTOR_START));
         guideMap.insert(std::pair<std::string, std::string>(EDGEDETECTOR_FINISH, EDGEDETECTOR_FINISH));
-        
         guideMap.insert(std::pair<std::string, std::string>(TEST, TEST));
-        
-        
     }
-    
-    
-    
+ 
 };
 
 void GuideTable::showGuideMessage(std::string guide)
 {
-    
     std::cout <<  guideMap[guide] << std::endl;
-    
 };
 
 
 void GuideTable::inputedValues(char *filename, int height, int width, int mode)
 {
-    
-std::cout <<  filename << std::endl;
-std::cout <<  height << std::endl;
-std::cout <<  width << std::endl;
-std::cout <<  mode << std::endl;
-    
+    std::cout <<  filename << std::endl;
+    std::cout <<  height << std::endl;
+    std::cout <<  width << std::endl;
+    std::cout <<  mode << std::endl;   
 };

@@ -45,7 +45,7 @@ int main(int argc, const char * argv[]) {
     imageReader->start();
     
    
-    
+    // debuging work.
 //    EdgeController * Controller = new EdgeController(1 , imageReader->inputImage);
 //
 //    

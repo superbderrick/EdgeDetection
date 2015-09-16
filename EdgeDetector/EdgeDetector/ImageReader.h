@@ -32,13 +32,15 @@ public:
     ImageReader(char * fileName , unsigned int width , unsigned int height );
     ~ImageReader();
     
+    int ** finalImage;
     unsigned char ** inputImage;
     unsigned char ** getImageData(unsigned char ** data);
     
-    unsigned char ** allocateImage( int width,  int height);
+    unsigned char ** allocateBinarizationImage( int width,  int height);
+    int ** allocateEdgeImage( int width,  int height);
     
     void readfile(char *filename, unsigned char **source, int width, int height);
-    void Writefile(char *filename, unsigned char **result, int width, int height);
+    void Writefile(char *filename, unsigned char **result, int ** finalImage,int width, int height);
     void start();
     
 };

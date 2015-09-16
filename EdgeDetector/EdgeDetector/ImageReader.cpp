@@ -24,7 +24,6 @@ ImageReader::ImageReader(char * fileName , unsigned int width , unsigned int hei
     mWidth = width;
     mHeight =  height;
     
-    
 };
 
 
@@ -42,13 +41,14 @@ unsigned char**  ImageReader::getImageData(unsigned char ** data) {
 
 void ImageReader::start()
 {
-    inputImage = allocateImage(mWidth,mHeight);
+    inputImage = allocateBinarizationImage(mWidth,mHeight);
+    finalImage = allocateEdgeImage(mWidth, mHeight);
     readfile(mFileName, inputImage, mWidth, mHeight);
     
-    // Writefile("result.raw", inputImage, mWidth, mHeight);
+    Writefile("result.raw", inputImage, finalImage,mWidth, mHeight);
 };
 
-unsigned char ** ImageReader::allocateImage(int width, int height)
+unsigned char ** ImageReader::allocateBinarizationImage(int width, int height)
 {
     int i, j;
     unsigned char **ptr;
@@ -75,7 +75,34 @@ unsigned char ** ImageReader::allocateImage(int width, int height)
     return ptr;
 }
 
-void ImageReader::readfile(char *filename, unsigned char **source, int width, int height)
+int ** ImageReader::allocateEdgeImage(int width, int height)
+{
+    int i, j;
+    int **edge;
+    
+    if ((edge = (int**)malloc(height * sizeof(int*))) == NULL) {
+        guideTable->showGuideMessage(MEMORY_FAILURE);
+        exit(1);
+    }
+    
+    for (i = 0; i<height; i++)
+    {
+        if ((edge[i] = (int*)malloc(width * sizeof(int))) == NULL) {
+            guideTable->showGuideMessage(MEMORY_FAILURE);
+            exit(1);
+        }
+    }
+    
+    for (i = 0; i<height; i++)
+        for (j = 0; j<width; j++)
+            edge[i][j] = 0;
+    
+    guideTable->showGuideMessage(MEMORY_SUCCESS);
+    
+    return edge;
+}
+
+void ImageReader::readfile(char *filename, unsigned char **source,int width, int height)
 {
     int i, j;
     FILE *file;
@@ -93,8 +120,10 @@ void ImageReader::readfile(char *filename, unsigned char **source, int width, in
     fclose(file);
     
 }
-void ImageReader:: Writefile(char *filename, unsigned char **result, int width, int height)
+void ImageReader:: Writefile(char *filename, unsigned char **result, int ** finalImage,int width, int height)
 {
+    int ** temp; // debug later I have to change name
+    
     int i, j;
     FILE *writef;
     int value = 0;
@@ -102,6 +131,30 @@ void ImageReader:: Writefile(char *filename, unsigned char **result, int width, 
         guideTable->showGuideMessage(FILE_OPEN_ERROR);
         exit(1);
     }
+    
+    // debug later I have to change to function
+    //////////-------------------------------------------------------------//////////////////////
+    if ((temp = (int**)malloc(height * sizeof(int*))) == NULL) {
+        guideTable->showGuideMessage(MEMORY_FAILURE);
+        exit(1);
+    }
+    
+    for (i = 0; i<height; i++)
+    {
+        if ((temp[i] = (int*)malloc(width * sizeof(int))) == NULL) {
+            guideTable->showGuideMessage(MEMORY_FAILURE);
+            exit(1);
+        }
+    }
+    
+    for (i = 0; i<height; i++)
+        for (j = 0; j<width; j++)
+            temp[i][j] = 0;
+    
+    
+    
+   //////////-------------------------------------------------------------//////////////////////
+    // to bieaniery file.
     
     for (i = 0; i<height; i++)
     {
@@ -112,33 +165,51 @@ void ImageReader:: Writefile(char *filename, unsigned char **result, int width, 
                 value = 128;
             } else
                 value = 0;
-            
+            finalImage[i][j] = value;
             //printf("%d \n" , value);
-            putc((unsigned char)value, writef);
+            //putc((unsigned char)value, writef);
         }
         
     }
     
-//    for (i = 0; i<height; i++)
-//            {
-//                for (j = 0; j<width; j++)
-//                {
-//                    if(result[i][j] > 128)
-//                    {
-//                        value = 128;
-//                    } else
-//                        value = 0;
-//                    
-//        
-//                    //printf("%d \n" , value);
-//                    putc((unsigned char)value, writef);
-//                }
-//                
-//            }
     
+    //////////-------------------------------------------------------------//////////////////////
+    
+    //    alorism part.. to make edge
+    int offset = 0;
+    for (i = 0; i<height; i++) {
+        for (j = 0; j<width; j++) {
+           
+            if(finalImage[i][j] == 0)
+            {
+                offset = i;
+                
+                temp[offset][120] = 128;
+               //printf("%d \n" ,offset );
+            }
+            
+            //putc((unsigned char)finalImage[i][j], writef);
+        }
+            }
+    
+     //////////-------------------------------------------------------------//////////////////////
+   
+    for (i = 0; i<height; i++)
+    {
+        for (j = 0; j<width; j++)
+        {
+            
+            printf("%d \n" ,temp[i][j] );
+            putc((unsigned char)temp[i][j], writef);
+        }
+        
+    }
     
     guideTable->showGuideMessage(FILE_WRITE_SUCCESS);
     fclose(writef);
+    
+    /// file wirter part/
+    //////////-------------------------------------------------------------//////////////////////
 }
 
 

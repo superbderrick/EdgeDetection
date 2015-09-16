@@ -16,20 +16,18 @@
 #include <iostream>
 
 class GuideTable{
-    
+
 public:
-    
-    GuideTable();
-    ~GuideTable();
-    void showGuideMessage(std::string);
-    void inputedValues(char * filename , int height , int width , int mode);
-    
+
+GuideTable();
+~GuideTable();
+void showGuideMessage(std::string);
+void inputedValues(char * filename , int height , int width , int mode);
+
 private:
-    
-    
-    std::map< std::string, std::string> guideMap;
-    void initStringTable();
-    void init();
+std::map< std::string, std::string> guideMap;
+void initStringTable();
+void init();
 };
 
 #endif /* defined(__EdgeDetector__GuideTable__) */

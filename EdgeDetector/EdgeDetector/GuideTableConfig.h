@@ -14,10 +14,6 @@
 
 
 
-
-
-//introduction program.
-
 #define INTRODUCTION_PROGRAM "THIS IS SIMPLE EDGE DECTOR."
 
 #define INPUT_LIST "Plese Input  Raw file, Width, Height , Dector Mode. "

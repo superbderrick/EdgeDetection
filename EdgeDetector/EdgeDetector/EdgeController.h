@@ -16,13 +16,10 @@
 class EdgeController
 {
 private:
-
-    
     int mMode;
     unsigned char ** applyImage;
 public:
     EdgeController(int mode , unsigned char ** inputImage);
-    
     ~EdgeController();
      int  ** applyAlgorithm();
 };
