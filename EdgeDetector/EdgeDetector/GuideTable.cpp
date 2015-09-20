@@ -93,5 +93,14 @@ void GuideTable::checkEdgeMode(int mode)
    
 }
 
+void GuideTable::showThreshold(int threshold)
+{
+    
+ std::cout <<  threshold << std::endl;
+    
+    
+}
+
+
 
 

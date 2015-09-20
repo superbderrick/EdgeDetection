@@ -30,6 +30,8 @@ private:
     std::multimap< int, int> lastNumbMap;
     unsigned int  ** arr;
     
+    void showDeck();
+    
 public:
     ImageReader();
     ImageReader(char * fileName , unsigned int width , unsigned int height ,unsigned int mode );

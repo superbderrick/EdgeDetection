@@ -40,7 +40,7 @@ int main(int argc, const char * argv[]) {
     }
     
     guideTable->showGuideMessage(START_PROGRAM);
-    
+    showDeck();
     ImageReader * imageReader = new ImageReader(fileName , atoi(argv[WIDTH]) ,  atoi(argv[HEIGHT]) ,  atoi(argv[EDGE_MODE]));
     
     imageReader->start();

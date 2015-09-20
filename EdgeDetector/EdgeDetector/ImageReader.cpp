@@ -32,6 +32,7 @@ ImageReader::~ImageReader()
     delete mFileName;
     delete inputImage;
     delete finalImage;
+    delete IntermediateImage;
 };
 
 unsigned char**  ImageReader::getImageData(unsigned char ** data) {
@@ -49,6 +50,7 @@ void ImageReader::start()
     
     readfile(mFileName, inputImage, mWidth, mHeight);
     
+    showDeck();
     guideTable->selectedValues(mMode);
     guideTable->checkEdgeMode(mMode);
     
@@ -148,6 +150,12 @@ void ImageReader::readfile(char *filename, unsigned char **source,int width, int
     
 }
 
+void ImageReader::showDeck() {
+    guideTable->showGuideMessage(DECK);
+    guideTable->showGuideMessage(DECK);
+};
+
+
 
  //////////-------------------------------------------------------------//////////////////////
 // 01 just Binarization Image
@@ -184,6 +192,8 @@ void ImageReader::makeAppliedThresholdAlgorithmImage(unsigned char **result, int
     int i, j;
     FILE *writef;
     int value = 0;
+    int sum = 0;
+    int average = 0;
     if ((writef = fopen("result.raw", "wb")) == NULL) {
         guideTable->showGuideMessage(FILE_OPEN_ERROR);
         exit(1);
@@ -193,7 +203,19 @@ void ImageReader::makeAppliedThresholdAlgorithmImage(unsigned char **result, int
     {
         for (j = 0; j<width; j++)
         {
-            if(result[i][j] > 128)
+            sum += result[i][j];
+        }
+        
+    }
+    average = sum / (width * height);
+    
+    guideTable->showThreshold(average);
+    
+    for (i = 0; i<height; i++)
+    {
+        for (j = 0; j<width; j++)
+        {
+            if(result[i][j] > average)
             {
                 value = 255;
             } else
