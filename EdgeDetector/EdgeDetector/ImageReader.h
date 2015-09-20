@@ -12,6 +12,11 @@
 #include <stdio.h>
 #include <string.h>
 
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+
 #include "GuideTable.h"
 
 
@@ -39,6 +44,7 @@ public:
     
     int ** finalImage;
     unsigned char ** inputImage;
+    unsigned char ** outputImage;
     int ** IntermediateImage;
     
     unsigned char ** getImageData(unsigned char ** data);
@@ -58,7 +64,7 @@ public:
     void makeBinarizationImage(unsigned char **result, int ** finalImage,int width, int height);
     void makeAppliedThresholdAlgorithmImage(unsigned char **result, int ** finalImage,int width, int height);
     void makeAppliedNormalAlgorithmImage( unsigned char **result, int ** finalImage,int width, int height , int** inter);
-    void makeAppliedSobelAlgorithmImage( unsigned char **result, int ** finalImage,int width, int height , int** inter);
+    void makeAppliedSobelAlgorithmImage( unsigned char **result, unsigned char **output,int width, int height);
 };
 
 #endif /* defined(__EdgeDetector__ImageReader__) */
