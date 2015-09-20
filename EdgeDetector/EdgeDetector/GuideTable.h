@@ -23,7 +23,8 @@ GuideTable();
 ~GuideTable();
 void showGuideMessage(std::string);
 void inputedValues(char * filename , int height , int width , int mode);
-
+void selectedValues(int mode);
+    
 private:
 std::map< std::string, std::string> guideMap;
 void initStringTable();

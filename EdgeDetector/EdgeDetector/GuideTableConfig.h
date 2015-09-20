@@ -34,7 +34,9 @@
 
 #define FILE_OPEN_SUCCESS "File open Success ,  "
 #define FILE_OPEN_ERROR "File open Error , Plese check it file "
-#define FILE_WRITE_SUCCESS " File Write Success ,  "
+#define FILE_WRITE_SUCCESS "File Write Success ,  "
+
+#define FILE_READ_SUCCESS "File read Success ,  "
 
 
 

@@ -13,18 +13,16 @@ ImageReader::ImageReader()
     
 };
 
-ImageReader::ImageReader(char * fileName , unsigned int width , unsigned int height )
+ImageReader::ImageReader(char * fileName , unsigned int width , unsigned int height , unsigned int mode )
 {
     guideTable = new GuideTable();
     
     mFileName = new char();
-
     strcpy(mFileName , fileName);
     
     mWidth = width;
     mHeight =  height;
-
-    
+    mMode = mode;
 };
 
 
@@ -32,6 +30,8 @@ ImageReader::~ImageReader()
 {
     delete guideTable;
     delete mFileName;
+    delete inputImage;
+    delete finalImage;
 };
 
 unsigned char**  ImageReader::getImageData(unsigned char ** data) {
@@ -44,9 +44,24 @@ void ImageReader::start()
 {
     inputImage = allocateBinarizationImage(mWidth,mHeight);
     finalImage = allocateEdgeImage(mWidth, mHeight);
+    
     readfile(mFileName, inputImage, mWidth, mHeight);
     
-    Writefile("result.raw", inputImage, finalImage,mWidth, mHeight);
+    guideTable->selectedValues(mMode);
+    
+    switch (mMode) {
+            //normal Binarization Image
+        case 1:
+            makeBinarizationImage(inputImage, finalImage, mWidth, mHeight);
+            break;
+        case 2:
+            Writefile(inputImage, finalImage, mWidth, mHeight, mMode);
+            break;
+            
+        default:
+            break;
+    }
+    
 };
 
 unsigned char ** ImageReader::allocateBinarizationImage(int width, int height)
@@ -120,15 +135,17 @@ void ImageReader::readfile(char *filename, unsigned char **source,int width, int
     guideTable->showGuideMessage(FILE_OPEN_SUCCESS);
     fclose(file);
     
+    guideTable->showGuideMessage(FILE_READ_SUCCESS);
+    
 }
-void ImageReader:: Writefile(char *filename, unsigned char **result, int ** finalImage,int width, int height)
+void ImageReader:: Writefile( unsigned char **result, int ** finalImage,int width, int height , int mode)
 {
     int ** temp; // debug later I have to change name
     
     int i, j;
     FILE *writef;
     int value = 0;
-    if ((writef = fopen(filename, "wb")) == NULL) {
+    if ((writef = fopen("result.raw", "wb")) == NULL) {
         guideTable->showGuideMessage(FILE_OPEN_ERROR);
         exit(1);
     }
@@ -169,7 +186,7 @@ void ImageReader:: Writefile(char *filename, unsigned char **result, int ** fina
             finalImage[i][j] = value;
             //printf("%d \n" , value);
             //debug
-           // putc((unsigned char)value, writef);
+          // putc((unsigned char)value, writef);
         }
         
     }
@@ -233,28 +250,19 @@ void ImageReader:: Writefile(char *filename, unsigned char **result, int ** fina
                     testArray[count] = j;
                     count++;
                 }
-                
+        
 //                std::pair<std::map<int,int>::iterator, std::map<int,int>::iterator> iter_pair;
 //                iter_pair = lastNumbMap.equal_range(i);
 //                
 //                for (std::multimap<int,int>::iterator iter = iter_pair.first; iter != iter_pair.second ; iter++) {
 //                    printf("test %d , %d\n" ,iter->first ,iter->second);
 //                }
-                
-                
-                
+       
             }
-            else
-            {
-               // temp[i][j] = 255;
-            }
+           
            
         }
     }
-    
-   
-    
-    
     
 
     for (i = 0; i<height; i++)
@@ -262,7 +270,7 @@ void ImageReader:: Writefile(char *filename, unsigned char **result, int ** fina
         for (j = 0; j<width; j++)
         {
             
-            printf("%d \n" ,temp[i][j] );
+            //printf("%d \n" ,temp[i][j] );
             putc((unsigned char)temp[i][j], writef);
         }
         
@@ -274,6 +282,39 @@ void ImageReader:: Writefile(char *filename, unsigned char **result, int ** fina
     /// file wirter part/
     //////////-------------------------------------------------------------//////////////////////
 }
+
+
+ //////////-------------------------------------------------------------//////////////////////
+// 01 just Binarization Image
+
+void ImageReader::makeBinarizationImage(unsigned char **result, int ** finalImage,int width, int height )
+{
+    int i, j;
+    FILE *writef;
+    int value = 0;
+    if ((writef = fopen("result.raw", "wb")) == NULL) {
+        guideTable->showGuideMessage(FILE_OPEN_ERROR);
+        exit(1);
+    }
+    
+    for (i = 0; i<height; i++)
+    {
+        for (j = 0; j<width; j++)
+        {
+            if(result[i][j] > 128)
+            {
+                value = 255;
+            } else
+                value = 0;
+            finalImage[i][j] = value;
+            
+             putc((unsigned char)value, writef);
+        }
+        
+    }
+};
+
+ //////////-------------------------------------------------------------//////////////////////
 
 
 

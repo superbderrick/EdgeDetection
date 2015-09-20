@@ -36,22 +36,24 @@ int main(int argc, const char * argv[]) {
         showSuccessGuide();
         strcpy(fileName,argv[FILE_NAME]);
         guideTable->inputedValues(fileName, atoi(argv[WIDTH]), atoi(argv[HEIGHT]), atoi(argv[EDGE_MODE]));
+        showDeck();
     }
     
     guideTable->showGuideMessage(START_PROGRAM);
     
-    ImageReader * imageReader = new ImageReader(fileName, atoi(argv[WIDTH]), atoi(argv[HEIGHT]));
-   
+    ImageReader * imageReader = new ImageReader(fileName , atoi(argv[WIDTH]) ,  atoi(argv[HEIGHT]) ,  atoi(argv[EDGE_MODE]));
+    
     imageReader->start();
     
-   
-    // debuging work.
-//    EdgeController * Controller = new EdgeController(1 , imageReader->inputImage);
-//
-//    
-//    ImageWriter * imageWriter = new ImageWriter(Controller->applyAlgorithm());
-//    imageWriter->makeRawfile();
     
+    //////////----------------------------------------------------------------------////////Refactoring Part.
+    
+    //    EdgeController * Controller = new EdgeController(1 , imageReader->inputImage);
+    //
+    //
+    //    ImageWriter * imageWriter = new ImageWriter(Controller->applyAlgorithm());
+    //    imageWriter->makeRawfile();
+    //////////----------------------------------------------------------------------////////Refactoring Part.
  
     showDeck();
     guideTable->showGuideMessage(EDGEDETECTOR_FINISH);
@@ -80,6 +82,8 @@ void showHelp() {
 void showSuccessGuide() {
     guideTable->showGuideMessage(INPUT_SUCCESS);
     guideTable->showGuideMessage(INPUT_DATALIST);
+    guideTable->showGuideMessage(DECK);
+    guideTable->showGuideMessage(DECK);
 };
 
 void deletelibs() {

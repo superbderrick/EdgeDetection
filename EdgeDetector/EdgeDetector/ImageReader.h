@@ -21,29 +21,38 @@ class ImageReader
 private:
     GuideTable * guideTable;
     char * mFileName;
+    
     int  mWidth;
     int  mHeight;
+    int mMode;
     
+    //test
     std::multimap< int, int> lastNumbMap;
-
     unsigned int  ** arr;
     
 public:
     ImageReader();
-    ImageReader(char * fileName , unsigned int width , unsigned int height );
+    ImageReader(char * fileName , unsigned int width , unsigned int height ,unsigned int mode );
     ~ImageReader();
     
     int ** finalImage;
     unsigned char ** inputImage;
+    
     unsigned char ** getImageData(unsigned char ** data);
     
     unsigned char ** allocateBinarizationImage( int width,  int height);
+    
     int ** allocateEdgeImage( int width,  int height);
     
     void readfile(char *filename, unsigned char **source, int width, int height);
-    void Writefile(char *filename, unsigned char **result, int ** finalImage,int width, int height);
+    
+    void Writefile( unsigned char **result, int ** finalImage,int width, int height , int mode);
+    
+    
     void start();
     
+    // algorsim
+    void makeBinarizationImage(unsigned char **result, int ** finalImage,int width, int height);
 };
 
 #endif /* defined(__EdgeDetector__ImageReader__) */

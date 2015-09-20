@@ -48,6 +48,7 @@ void GuideTable::initStringTable()
         guideMap.insert(std::pair<std::string, std::string>(FILE_WRITE_SUCCESS, FILE_WRITE_SUCCESS));
         guideMap.insert(std::pair<std::string, std::string>(EDGEDETECTOR_START, EDGEDETECTOR_START));
         guideMap.insert(std::pair<std::string, std::string>(EDGEDETECTOR_FINISH, EDGEDETECTOR_FINISH));
+        guideMap.insert(std::pair<std::string, std::string>(FILE_READ_SUCCESS, FILE_READ_SUCCESS));
         guideMap.insert(std::pair<std::string, std::string>(TEST, TEST));
     }
  
@@ -66,3 +67,11 @@ void GuideTable::inputedValues(char *filename, int height, int width, int mode)
     std::cout <<  width << std::endl;
     std::cout <<  mode << std::endl;   
 };
+
+void GuideTable::selectedValues(int mode)
+{
+    std::cout <<  "selected mode "<<mode << std::endl;
+}
+
+
+
