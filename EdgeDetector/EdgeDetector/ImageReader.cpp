@@ -167,7 +167,8 @@ void ImageReader:: Writefile(char *filename, unsigned char **result, int ** fina
                 value = 0;
             finalImage[i][j] = value;
             //printf("%d \n" , value);
-            //putc((unsigned char)value, writef);
+            //debug
+           // putc((unsigned char)value, writef);
         }
         
     }
@@ -177,23 +178,63 @@ void ImageReader:: Writefile(char *filename, unsigned char **result, int ** fina
     
     //    alorism part.. to make edge
     int offset = 0;
-    for (i = 0; i<height; i++) {
-        for (j = 0; j<width; j++) {
-           
+    int count = 0;
+    int start = 0;
+    int newt = 0;
+    bool isData = true;
+    
+    int testArray [65536];
+    
+    for (int i = 0; i<height; i++) {
+        for (int j=0; j<width; j++) {
             if(finalImage[i][j] == 0)
             {
-                offset = i;
+                if(offset == i)
+                {
+                    for(int k = 0 ;k < count;k++)
+                    {
+                        if(j == testArray[k])
+                        {
+                            isData = false;
+                            break;
+                        } else
+                            isData = true;
+                            
+                    }
+                    
+                    if(isData)
+                    {
+                        temp[offset][j] = 244;
+                        testArray[count] = j;
+                        count++;
+                        isData = true;
+                    }
+                    
+                }
+                else
+                {
+                    offset = i;
+                    start = j;
+                    temp[offset][start] = 244;
+                    testArray[count] = j;
+                    count++;
+                }
                 
-                temp[offset][120] = 128;
-               //printf("%d \n" ,offset );
+                
             }
-            
-            //putc((unsigned char)finalImage[i][j], writef);
+            else
+            {
+               // temp[i][j] = 255;
+            }
+           
         }
-            }
+    }
     
-     //////////-------------------------------------------------------------//////////////////////
    
+    
+    
+    
+
     for (i = 0; i<height; i++)
     {
         for (j = 0; j<width; j++)
