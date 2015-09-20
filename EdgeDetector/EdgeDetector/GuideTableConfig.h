@@ -52,7 +52,7 @@
 #define DETAIL_MODE_ONE "This is mode to create a binary image. "
 #define DETAIL_MODE_TWO "This is mode to apply  average threshold algorism "
 #define DETAIL_MODE_THREE "This is mode to apply normal algorism "
-
+#define DETAIL_MODE_FOUR "This is mode to apply sobel algorism "
 
 
 
