@@ -24,6 +24,7 @@ private:
     int  mWidth;
     int  mHeight;
     
+    std::multimap< int, int> lastNumbMap;
 
     unsigned int  ** arr;
     

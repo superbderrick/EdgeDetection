@@ -23,6 +23,7 @@ ImageReader::ImageReader(char * fileName , unsigned int width , unsigned int hei
     
     mWidth = width;
     mHeight =  height;
+
     
 };
 
@@ -180,8 +181,12 @@ void ImageReader:: Writefile(char *filename, unsigned char **result, int ** fina
     int offset = 0;
     int count = 0;
     int start = 0;
-    int newt = 0;
+    int end = 0;
     bool isData = true;
+    int dd = 0;
+    
+    bool checkoverlab = false;
+
     
     int testArray [65536];
     
@@ -191,6 +196,12 @@ void ImageReader:: Writefile(char *filename, unsigned char **result, int ** fina
             {
                 if(offset == i)
                 {
+                    dd = j;
+                    checkoverlab = true;
+                   
+               //     lastNumbMap.insert(std::make_pair(i, j));
+                   
+                    
                     for(int k = 0 ;k < count;k++)
                     {
                         if(j == testArray[k])
@@ -213,12 +224,23 @@ void ImageReader:: Writefile(char *filename, unsigned char **result, int ** fina
                 }
                 else
                 {
+                    checkoverlab = false;
+                    temp[offset][dd] = 244;
+                    
                     offset = i;
                     start = j;
                     temp[offset][start] = 244;
                     testArray[count] = j;
                     count++;
                 }
+                
+//                std::pair<std::map<int,int>::iterator, std::map<int,int>::iterator> iter_pair;
+//                iter_pair = lastNumbMap.equal_range(i);
+//                
+//                for (std::multimap<int,int>::iterator iter = iter_pair.first; iter != iter_pair.second ; iter++) {
+//                    printf("test %d , %d\n" ,iter->first ,iter->second);
+//                }
+                
                 
                 
             }
