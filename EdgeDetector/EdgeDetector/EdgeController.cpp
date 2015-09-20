@@ -22,6 +22,7 @@ EdgeController::~EdgeController()
 int ** EdgeController::applyAlgorithm()
 {
     int value = 0;
+    
     int ** test;
     
     

@@ -58,7 +58,7 @@ public:
     void makeBinarizationImage(unsigned char **result, int ** finalImage,int width, int height);
     void makeAppliedThresholdAlgorithmImage(unsigned char **result, int ** finalImage,int width, int height);
     void makeAppliedNormalAlgorithmImage( unsigned char **result, int ** finalImage,int width, int height , int** inter);
-    
+    void makeAppliedSobelAlgorithmImage( unsigned char **result, int ** finalImage,int width, int height , int** inter);
 };
 
 #endif /* defined(__EdgeDetector__ImageReader__) */

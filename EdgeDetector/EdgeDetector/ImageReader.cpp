@@ -67,6 +67,10 @@ void ImageReader::start()
             //apply normal algorism by derrick
             makeAppliedNormalAlgorithmImage(inputImage, finalImage, mWidth, mHeight, IntermediateImage);
             break;
+        case 4:
+            //apply normal algorism by derrick
+            makeAppliedSobelAlgorithmImage(inputImage, finalImage, mWidth, mHeight, IntermediateImage);
+            break;
             
         default:
             break;
@@ -219,7 +223,7 @@ void ImageReader::makeAppliedThresholdAlgorithmImage(unsigned char **result, int
             {
                 value = 255;
             } else
-                value = 0;
+                value = 128;
             finalImage[i][j] = value;
             
             putc((unsigned char)value, writef);
@@ -236,10 +240,23 @@ void ImageReader:: makeAppliedNormalAlgorithmImage( unsigned char **result, int 
     int i, j;
     FILE *writef;
     int value = 0;
+    int sum = 0;
+    int average = 0;
+    
     if ((writef = fopen("result.raw", "wb")) == NULL) {
         guideTable->showGuideMessage(FILE_OPEN_ERROR);
         exit(1);
     }
+    
+    for (i = 0; i<height; i++)
+    {
+        for (j = 0; j<width; j++)
+        {
+            sum += result[i][j];
+        }
+        
+    }
+    average = sum / (width * height);
     
     //////////-------------------------------------------------------------//////////////////////
     //Creating a primary binary file
@@ -248,11 +265,11 @@ void ImageReader:: makeAppliedNormalAlgorithmImage( unsigned char **result, int 
     {
         for (j = 0; j<width; j++)
         {
-            if(result[i][j] > 128)
+            if(result[i][j] > average)
             {
-                value = 128;
+                value = 255;
             } else
-                value = 0;
+                value = 128;
             midle[i][j] = value;
         }
         
@@ -272,7 +289,7 @@ void ImageReader:: makeAppliedNormalAlgorithmImage( unsigned char **result, int 
     
     for (int i = 0; i<height; i++) {
         for (int j=0; j<width; j++) {
-            if(midle[i][j] == 0)
+            if(midle[i][j] == 128)
             {
                 if(offset == i)
                 {
@@ -310,6 +327,16 @@ void ImageReader:: makeAppliedNormalAlgorithmImage( unsigned char **result, int 
                     count++;
                 }
             }
+            else if(result[i][j] > average)
+            {
+                final[i][j] =50;
+            }
+            else
+            {
+                final[i][j] =128;
+            }
+            
+          
         }
     }
     
@@ -323,6 +350,112 @@ void ImageReader:: makeAppliedNormalAlgorithmImage( unsigned char **result, int 
     guideTable->showGuideMessage(FILE_WRITE_SUCCESS);
     fclose(writef);
 }
+
+void ImageReader::makeAppliedSobelAlgorithmImage(unsigned char **result, int ** midle,int width, int height , int ** final)
+{
+//    int sobelX[3][3]= {{-1,0,1},
+//                       {-2,0,2},
+//                       {-1,0,1}
+//                      };
+//    int sobelY[3][3]= { {1,2,1},
+//                        {0,0,0},
+//                        {-1,-2,-1}
+//                      };
+//    
+//    int i,j,vmax,vmin;
+//    int heightm1=height-1;
+//    int widthm1=width-1;
+//    int mr,mc;
+//    int newValue;
+//    
+//    int *pImgSobelX,*pImgSobelY;
+//    int min,max,where;
+//    float constVal1,constVal2;
+//    unsigned char OrgImg[256][256];
+//    
+//    FILE *writef;
+//    if ((writef = fopen("result.raw", "wb")) == NULL) {
+//        guideTable->showGuideMessage(FILE_OPEN_ERROR);
+//        exit(1);
+//    }
+//    
+//    fread(result, sizeof(char),256*256,writef);
+//    fclose(writef);
+//    
+//    //정수값을 갖는 이미지 동적 메모리 할당
+//    pImgSobelX=new int[height*width];
+//    pImgSobelY=new int[height*width];
+//    
+//    //결과 이미지 0으로 초기화
+//    for(i=0;i<height;i++)
+//        for(j=0;j<width;j++)
+//        {
+//            OrgImg[i][j]=0;
+//            where=i*width+j;
+//            pImgSobelX[where]=0;
+//            pImgSobelY[where]=0;
+//        }
+//    
+//    //X 방향 에지 강도 계산
+//    for(i=1; i<heightm1; i++)
+//    {
+//        for(j=1; j<widthm1; j++)
+//        {
+//            newValue=0; //0으로 초기화
+//            for(mr=0;mr<3;mr++)
+//                for(mc=0;mc<3;mc++)
+//                    newValue += (sobelX[mr][mc]*
+//                                 result[i+mr-1][j+mc-1]);
+//            pImgSobelX[i*width+j]=newValue;
+//        }
+//    }
+//    
+//    //Y 방향 에지 강도 계산
+//    for(i=1; i<heightm1; i++)
+//    {
+//        for(j=1; j<widthm1; j++)
+//        {
+//            newValue=0; //0으로 초기화
+//            for(mr=0;mr<3;mr++)
+//                for(mc=0;mc<3;mc++)
+//                    newValue += (sobelY[mr][mc]*result[i+mr-1][j+mc-1]);
+//            pImgSobelY[i*width+j]=newValue;
+//        }
+//    }
+//    
+//    for(i=1;i<heightm1;i++)
+//        for(j=1;j<widthm1;j++)
+//        {
+//            where=i*width+j;
+//            constVal1=pImgSobelX[where];
+//            constVal2=pImgSobelY[where];
+//            if(constVal1<0)
+//                constVal1=-constVal1;
+//            if(constVal2<0)
+//                constVal2=-constVal2;
+//            pImgSobelX[where]=constVal1+constVal2;
+//        }
+//    
+//    min=(int)10e10;
+//    max=(int)-10e10;
+//    for(i=1; i<heightm1; i++)
+//    {
+//        for(j=1; j<widthm1; j++)
+//        {
+//            newValue=pImgSobelX[i*width+j];
+//            if(newValue<min)
+//                min=newValue;
+//            if(newValue>max)
+//                max=newValue;
+//        }
+//    }
+//    
+//    
+    
+    
+    
+    
+};
 
 
  //////////-------------------------------------------------------------//////////////////////
