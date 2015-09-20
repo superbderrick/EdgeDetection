@@ -21,7 +21,7 @@ ImageReader::ImageReader(char * fileName , unsigned int width , unsigned int hei
     strcpy(mFileName , fileName);
     
     mWidth = width;
-    mHeight =  height;
+    mHeight = height;
     mMode = mode;
 };
 
@@ -48,6 +48,7 @@ void ImageReader::start()
     readfile(mFileName, inputImage, mWidth, mHeight);
     
     guideTable->selectedValues(mMode);
+    guideTable->checkEdgeMode(mMode);
     
     switch (mMode) {
             //normal Binarization Image
@@ -136,6 +137,7 @@ void ImageReader::readfile(char *filename, unsigned char **source,int width, int
     fclose(file);
     
     guideTable->showGuideMessage(FILE_READ_SUCCESS);
+    
     
 }
 void ImageReader:: Writefile( unsigned char **result, int ** finalImage,int width, int height , int mode)

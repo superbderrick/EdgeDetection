@@ -48,6 +48,10 @@
 
 #define TEST " TEST "
 
+#define SELECTED_MODE "selected mode :"
+#define DETAIL_MODE_ONE "This is the mode to create a binary image. "
+
+
 
 
 

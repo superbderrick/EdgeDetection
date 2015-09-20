@@ -70,7 +70,23 @@ void GuideTable::inputedValues(char *filename, int height, int width, int mode)
 
 void GuideTable::selectedValues(int mode)
 {
-    std::cout <<  "selected mode "<<mode << std::endl;
+    std::cout <<  SELECTED_MODE <<mode << std::endl;
+}
+
+
+void GuideTable::checkEdgeMode(int mode)
+{
+    switch (mode) {
+            
+        case 1:
+             std::cout <<  DETAIL_MODE_ONE << std::endl;
+            break;
+            
+        default:
+            break;
+    }
+    
+   
 }
 
 
