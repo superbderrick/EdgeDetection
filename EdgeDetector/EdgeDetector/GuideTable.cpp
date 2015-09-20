@@ -82,7 +82,11 @@ void GuideTable::checkEdgeMode(int mode)
              std::cout <<  DETAIL_MODE_ONE << std::endl;
             break;
             
-        default:
+        case 2:
+            std::cout <<  DETAIL_MODE_TWO << std::endl;
+            break;
+        case 3:
+            std::cout <<  DETAIL_MODE_THREE << std::endl;
             break;
     }
     

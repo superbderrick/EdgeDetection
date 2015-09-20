@@ -49,8 +49,9 @@
 #define TEST " TEST "
 
 #define SELECTED_MODE "selected mode :"
-#define DETAIL_MODE_ONE "This is the mode to create a binary image. "
-
+#define DETAIL_MODE_ONE "This is mode to create a binary image. "
+#define DETAIL_MODE_TWO "This is mode to apply  average threshold algorism "
+#define DETAIL_MODE_THREE "This is mode to apply normal algorism "
 
 
 

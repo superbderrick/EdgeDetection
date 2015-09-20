@@ -37,6 +37,7 @@ public:
     
     int ** finalImage;
     unsigned char ** inputImage;
+    int ** IntermediateImage;
     
     unsigned char ** getImageData(unsigned char ** data);
     
@@ -46,13 +47,16 @@ public:
     
     void readfile(char *filename, unsigned char **source, int width, int height);
     
-    void Writefile( unsigned char **result, int ** finalImage,int width, int height , int mode);
+    
     
     
     void start();
     
     // algorsim
     void makeBinarizationImage(unsigned char **result, int ** finalImage,int width, int height);
+    void makeAppliedThresholdAlgorithmImage(unsigned char **result, int ** finalImage,int width, int height);
+    void makeAppliedNormalAlgorithmImage( unsigned char **result, int ** finalImage,int width, int height , int** inter);
+    
 };
 
 #endif /* defined(__EdgeDetector__ImageReader__) */
