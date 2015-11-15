@@ -13,10 +13,10 @@ mode2 :  I am  researching a new algorithm.
 mode3 :  apply sobel alogorism.
 
 
-start - 
-1. cd execution_file .
 
-2. ./ EdgeDetector "normal raw file" , "width" , "height" , "Detector mode " .
+1. cd execution_file 
+
+2.  ./ EdgeDetector - "normal raw file" ,  " width "  " height " , " Detector mode " 
 
 
 
